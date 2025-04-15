@@ -26,6 +26,96 @@
       "star": 4,
       "price": "12.99",
       "introduction": "A heart-wrenching tale of love, loss, and the enduring power of family bonds."
+    },
+    {
+      "id": 4,
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "star": 5,
+      "price": "10.99",
+      "introduction": "A novel about the serious issues of rape and racial inequality.",
+      "image": "https://i.imgur.com/1H1bXGx.jpeg"
+    },
+    {
+      "id": 5,
+      "title": "1984",
+      "author": "George Orwell",
+      "star": 5,
+      "price": "9.99",
+      "introduction": "A dystopian social science fiction novel and cautionary tale.",
+      "image": "https://i.imgur.com/2H1bXGx.jpeg"
+    },
+    {
+      "id": 6,
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "star": 4,
+      "price": "8.99",
+      "introduction": "A romantic novel of manners written by Jane Austen.",
+      "image": "https://i.imgur.com/3H1bXGx.jpeg"
+    },
+    {
+      "id": 7,
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "star": 4,
+      "price": "11.99",
+      "introduction": "A story about the young and mysterious millionaire Jay Gatsby.",
+      "image": "https://i.imgur.com/4H1bXGx.jpeg"
+    },
+    {
+      "id": 8,
+      "title": "Moby Dick",
+      "author": "Herman Melville",
+      "star": 3,
+      "price": "7.99",
+      "introduction": "A sailor Ishmael narrates the obsessive quest of Ahab.",
+      "image": "https://i.imgur.com/5H1bXGx.jpeg"
+    },
+    {
+      "id": 9,
+      "title": "War and Peace",
+      "author": "Leo Tolstoy",
+      "star": 5,
+      "price": "14.99",
+      "introduction": "A novel that chronicles the history of the French invasion of Russia.",
+      "image": "https://i.imgur.com/6H1bXGx.jpeg"
+    },
+    {
+      "id": 10,
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "star": 4,
+      "price": "10.99",
+      "introduction": "A story about adolescent alienation and loss of innocence.",
+      "image": "https://i.imgur.com/7H1bXGx.jpeg"
+    },
+    {
+      "id": 11,
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "star": 5,
+      "price": "12.99",
+      "introduction": "A fantasy novel and children's book by J.R.R. Tolkien.",
+      "image": "https://i.imgur.com/8H1bXGx.jpeg"
+    },
+    {
+      "id": 12,
+      "title": "Crime and Punishment",
+      "author": "Fyodor Dostoevsky",
+      "star": 5,
+      "price": "13.99",
+      "introduction": "A novel about the mental anguish of a poor ex-student.",
+      "image": "https://i.imgur.com/9H1bXGx.jpeg"
+    },
+    {
+      "id": 13,
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "star": 4,
+      "price": "9.99",
+      "introduction": "A novel about a young shepherd in search of treasure.",
+      "image": "https://i.imgur.com/10H1bXGx.jpeg"
     }
   ],
   "users": [
