@@ -28,7 +28,7 @@
       "id": 3,
       "email": "admin@example.com",
       "username": "admin",
-      "password": "admin",
+      "password": "admin123456",
       "full_name": "Admin",
       "display_name": "Admin",
       "phone": "+84 914 000 003",
