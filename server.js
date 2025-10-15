@@ -1,29 +1,144 @@
-// JSON Server module
 const jsonServer = require("json-server");
-const fs = require('fs')
-const path = require('path')
+const fs = require("fs");
+const path = require("path");
+
 const server = jsonServer.create();
-
-const filePath = path.join('db/db.json')
-const data = fs.readFileSync(filePath, "utf-8");
-const db = JSON.parse(data);
-const router = jsonServer.router(db)
-
-// const router = jsonServer.router("db/db.json");
 const middlewares = jsonServer.defaults();
-
 server.use(middlewares);
-// Add this before server.use(router)
+server.use(jsonServer.bodyParser); // quan trọng để parse JSON body
+
+// ===== Đọc DB =====
+const filePath = path.join(__dirname, "data/db.json");
+const dbJSON = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+const router = jsonServer.router(dbJSON);
+const db = router.db;
+
+// ===== Rewriter =====
 server.use(
-	// Add custom route here if needed
-	jsonServer.rewriter({
-		"/api/*": "/$1",
-	})
+  jsonServer.rewriter({
+    "/api/*": "/$1",
+  })
 );
-server.use(router);
-server.listen(3000, () => {
-	console.log("JSON Server is running");
+
+// ===== Mock Auth =====
+globalThis.__refreshStore = globalThis.__refreshStore || new Map();
+
+const createToken = (payload, ttlSec = 3600) => {
+  const exp = Date.now() + ttlSec * 1000;
+  const body = { ...payload, exp };
+  return Buffer.from(JSON.stringify(body)).toString("base64url");
+};
+const parseToken = (token = "") => {
+  try {
+    const data = JSON.parse(Buffer.from(token, "base64url").toString("utf8"));
+    return data.exp > Date.now() ? data : null;
+  } catch {
+    return null;
+  }
+};
+
+const findUser = (iden, pw) =>
+  db
+    .get("users")
+    .value()
+    .find(
+      (u) =>
+        (u.email === iden || u.username === iden) &&
+        String(u.password) === String(pw)
+    );
+
+const nextId = (col) => {
+  const arr = db.get(col).value() || [];
+  return arr.length ? Math.max(...arr.map((x) => +x.id || 0)) + 1 : 1;
+};
+
+// REGISTER
+server.post("/auth/register", (req, res) => {
+  const { email, username, password, full_name, role } = req.body || {};
+  if (!(email || username) || !password)
+    return res
+      .status(400)
+      .json({ error: "email/username & password required" });
+
+  const exists = db
+    .get("users")
+    .value()
+    .some((u) => u.email === email || u.username === username);
+  if (exists) return res.status(409).json({ error: "User exists" });
+
+  const user = {
+    id: nextId("users"),
+    email: email || "",
+    username: username || (email ? email.split("@")[0] : ""),
+    password: String(password),
+    full_name: full_name || "",
+    role: role || "CLIENT",
+    created_at: new Date().toISOString(),
+  };
+  db.get("users").push(user).write();
+
+  const access_token = createToken({ sub: user.id }, 3600);
+  const refresh_token = createToken(
+    { sub: user.id, type: "refresh" },
+    7 * 24 * 3600
+  );
+  __refreshStore.set(refresh_token, user.id);
+  const { password: _pw, ...safe } = user;
+  res.json({ data: { user: safe, access_token, refresh_token } });
 });
 
-// Export the Server API
+// LOGIN
+server.post("/auth/login", (req, res) => {
+  const { identifier, email, username, password } = req.body || {};
+  const iden = identifier || email || username;
+  const user = findUser(iden, password);
+  if (!user) return res.status(401).json({ error: "Invalid credentials" });
+  const access_token = createToken({ sub: user.id }, 3600);
+  const refresh_token = createToken(
+    { sub: user.id, type: "refresh" },
+    7 * 24 * 3600
+  );
+  __refreshStore.set(refresh_token, user.id);
+  const { password: _pw, ...safe } = user;
+  res.json({ data: { user: safe, access_token, refresh_token } });
+});
+
+// REFRESH
+server.post("/auth/refresh", (req, res) => {
+  const { refresh_token } = req.body || {};
+  const decoded = parseToken(refresh_token);
+  const sub = __refreshStore.get(refresh_token);
+  if (!decoded || !sub || sub !== decoded.sub)
+    return res.status(401).json({ error: "Invalid refresh token" });
+  const newAccess = createToken({ sub }, 3600);
+  res.json({ data: { access_token: newAccess } });
+});
+
+// LOGOUT
+server.post("/auth/logout", (req, res) => {
+  __refreshStore.delete(req.body?.refresh_token);
+  res.json({ data: { ok: true } });
+});
+
+// ME
+server.get("/auth/me", (req, res) => {
+  const auth = req.headers.authorization || "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+  const decoded = parseToken(token);
+  if (!decoded) return res.status(401).json({ error: "Unauthorized" });
+  const user = db.get("users").find({ id: decoded.sub }).value();
+  if (!user) return res.status(404).json({ error: "User not found" });
+  const { password: _pw, ...safe } = user;
+  res.json({ data: safe });
+});
+
+// ===== Default CRUD routes =====
+server.use(router);
+
+if (require.main === module) {
+  server.listen(3000, () =>
+    console.log("JSON Server is running at http://localhost:3000")
+  );
+}
+
 module.exports = server;
