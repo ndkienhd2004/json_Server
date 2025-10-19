@@ -130,6 +130,24 @@
       "url": "https://vbpl.vn",
       "published_at": "2023-10-15",
       "effective_date": "2024-01-01"
+    },
+    {
+      "id": 2,
+      "code": "BHS-11/2023",
+      "title": "Bộ luật Hình sự 2015",
+      "summary": "Quy định về tội phạm, xử lý hình sự...",
+      "url": "https://vhs.vn",
+      "published_at": "2023-10-15",
+      "effective_date": "2024-01-01"
+    },
+    {
+      "id": 3,
+      "code": "BPL-11/2023",
+      "title": "Bộ luật Pháp định 2015",
+      "summary": "Quy định về pháp luật hành chính, dân sự, hình sự...",
+      "url": "https://bpl.vn",
+      "published_at": "2023-10-15",
+      "effective_date": "2024-01-01"
     }
   ],
 
