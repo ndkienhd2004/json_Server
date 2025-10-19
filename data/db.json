@@ -42,6 +42,7 @@
     {
       "id": 1,
       "user_id": 2,
+      "name": "Headshot Stock",
       "bio": "Luật sư dân sự & lao động, tư vấn HĐLĐ, tranh chấp",
       "years_experience": 7,
       "price_per_session_cents": 3000000,
@@ -49,11 +50,13 @@
       "province": "Hồ Chí Minh",
       "rating_avg": 4.6,
       "rating_count": 28,
+      "imageUri": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop",
       "updated_at": "2025-10-15T00:00:00Z"
     },
     {
       "id": 2,
       "user_id": 3,
+      "name": "Sarah Johnson",
       "bio": "Luật sư hình sự, tư vấn tội phạm, xử lý hình sự",
       "years_experience": 10,
       "price_per_session_cents": 3000000,
@@ -61,11 +64,13 @@
       "province": "Hà Nội",
       "rating_avg": 4.8,
       "rating_count": 32,
+      "imageUri": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=300&fit=crop",
       "updated_at": "2025-10-15T00:00:00Z"
     },
     {
       "id": 3,
       "user_id": 4,
+      "name": "Michael Chen",
       "bio": "Luật sư pháp định, tư vấn pháp luật hành chính, dân sự, hình sự",
       "years_experience": 10,
       "price_per_session_cents": 3000000,
@@ -73,11 +78,13 @@
       "province": "Hà Nội",
       "rating_avg": 4.8,
       "rating_count": 32,
+      "imageUri": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
       "updated_at": "2025-10-15T00:00:00Z"
     },
     {
       "id": 4,
       "user_id": 5,
+      "name": "Emily Rodriguez",
       "bio": "Luật sư pháp định, tư vấn pháp luật hành chính, dân sự, hình sự",
       "years_experience": 10,
       "price_per_session_cents": 3000000,
@@ -85,6 +92,7 @@
       "province": "Hà Nội",
       "rating_avg": 4.8,
       "rating_count": 32,
+      "imageUri": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=300&fit=crop",
       "updated_at": "2025-10-15T00:00:00Z"
     }
   ],
