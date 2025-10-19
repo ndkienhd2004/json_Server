@@ -50,6 +50,42 @@
       "rating_avg": 4.6,
       "rating_count": 28,
       "updated_at": "2025-10-15T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "user_id": 3,
+      "bio": "Luật sư hình sự, tư vấn tội phạm, xử lý hình sự",
+      "years_experience": 10,
+      "price_per_session_cents": 3000000,
+      "currency": "VND",
+      "province": "Hà Nội",
+      "rating_avg": 4.8,
+      "rating_count": 32,
+      "updated_at": "2025-10-15T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "user_id": 4,
+      "bio": "Luật sư pháp định, tư vấn pháp luật hành chính, dân sự, hình sự",
+      "years_experience": 10,
+      "price_per_session_cents": 3000000,
+      "currency": "VND",
+      "province": "Hà Nội",
+      "rating_avg": 4.8,
+      "rating_count": 32,
+      "updated_at": "2025-10-15T00:00:00Z"
+    },
+    {
+      "id": 4,
+      "user_id": 5,
+      "bio": "Luật sư pháp định, tư vấn pháp luật hành chính, dân sự, hình sự",
+      "years_experience": 10,
+      "price_per_session_cents": 3000000,
+      "currency": "VND",
+      "province": "Hà Nội",
+      "rating_avg": 4.8,
+      "rating_count": 32,
+      "updated_at": "2025-10-15T00:00:00Z"
     }
   ],
 
